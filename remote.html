@@ -1,0 +1,22 @@
+<!-- remote.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Page</title>
+</head>
+<body>
+  <h1>Remote Page</h1>
+  <p>Information will be displayed here when someone visits this page.</p>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('visit', (message) => {
+      document.querySelector('p').textContent = message;
+    });
+  </script>
+</body>
+</html>
