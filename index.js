@@ -1,10 +1,6 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
-// const play = require('audio-play');
-// const load = require('audio-loader');
-// const Speaker = require('speaker');
-// const Speaker = require('audio-speaker/stream');
 const fs = require('fs');
 
 const { exec } = require('child_process');
@@ -106,23 +102,6 @@ app.get('/me/:process', (req, res) => {
 app.get('/play', (req, res) => {
   ringMyBox(mp3FilePath);
   res.send('Playback started');
-  // Create a new Speaker instance
-  // const speaker = new Speaker();
-
-  // Create a readable stream from the MP3 file
-  // const mp3Stream = fs.createReadStream(mp3FilePath);
-
-  // Pipe the MP3 stream to the speaker
-  // mp3Stream.pipe(speaker);
-  // mp3Stream.pipe(Speaker());
-
-  // Handle end of stream
-  /*FilePat
-   * mp3Stream.on('end', () => {
-    console.log('Playback ended');
-    res.send('Playback ended');
-  });
-  */
 });
 
 // Socket.IO connection handling
