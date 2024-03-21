@@ -90,6 +90,18 @@ const ringMyBox = (mp3FilePath)=>{
 
 }
 
+// Endpoint to activate/deactivate monitoring
+app.get('/activate', (req, res) => {
+    active = !active; // Flip the active state
+    res.send(`Monitoring is now ${active ? 'active' : 'inactive'}`);
+});
+
+app.get('/me/:process', (req, res) => {
+    const newMe = req.params.process;
+    ao.me = newMe;
+    res.send(`ao.me parameter has been updated to: ${ao.me}`);
+});
+
 // Endpoint to play the MP3 sound
 app.get('/play', (req, res) => {
   ringMyBox(mp3FilePath);

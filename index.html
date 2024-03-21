@@ -4,11 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Play Sound</title>
+  <title>AO RingBox</title>
 </head>
 <body>
-  <h1>Play Sound</h1>
-  <button onclick="playSound()">Play Sound</button>
+  <h1>Test Sound</h1>
+  <button onclick="playSound()">Ring</button>
+
+  <h2>Update ao.me parameter:</h2>
+  <input type="text" id="newMeInput" placeholder="New ao.me value">
+  <button onclick="updateMe()">Update ao.me</button>
+  
+  <h2>Box Settings :</h2>
+  <button onclick="toggleMonitoring()">Toggle Sound</button>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
@@ -16,6 +23,21 @@
 
     function playSound() {
       fetch('/play')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    function updateMe() {
+      const newMeValue = document.getElementById('newMeInput').value;
+      fetch(`/me/${newMeValue}`)
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    function toggleMonitoring() {
+      fetch('/activate')
         .then(response => response.text())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
